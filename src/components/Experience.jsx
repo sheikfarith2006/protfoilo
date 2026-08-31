@@ -1,0 +1,6 @@
+import { Award, ArrowUpRight } from 'lucide-react'
+import { usePortfolioData } from '../hooks/usePortfolioData'
+import { experience as fallback } from '../data/fallback'
+import SectionHeader from './SectionHeader'
+
+export default function Experience() { const { data } = usePortfolioData('experience', fallback); return <section id="experience" className="section shell"><SectionHeader number="03" eyebrow="Experience" title={<>Learning fast, <em>shipping thoughtfully.</em></>} /><div className="timeline reveal">{data.map((item, index) => <article className="timeline-item" key={item.id || item.role}><div className="timeline-dot" /><div className="timeline-meta"><span>{item.period}</span><small>{item.location}</small></div><div className="timeline-content"><div className="timeline-title"><div><p>{item.company} <ArrowUpRight size={14} /></p><h3>{item.role}</h3></div><span className="type-badge">{item.type}</span></div><p className="timeline-description">{item.description}</p><ul>{item.highlights.map(highlight => <li key={highlight}>{highlight}</li>)}</ul>{index === 1 && <div className="award"><Award size={16} /> Best Intern Award · Onstep Technologies</div>}</div></article>)}</div></section> }
